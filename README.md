@@ -1,7 +1,7 @@
 # Crease Pattern Editor
 
 This is a draft of a web software tool for drawing quick crease/slit patterns.
-Currently it works well for crease patterns that fit on an integer grid.
+It supports both integer-grid drawing and common geometric construction points.
 
 ## Features So Far
 
@@ -15,6 +15,10 @@ Currently it works well for crease patterns that fit on an integer grid.
 * **Erase** existing creases by dragging over them
 * **Move vertices** by dragging them (bringing all connected edges with them)
 * **Snapping** to grid or existing vertex (e.g. from intersection)
+* **Fractional grids** with whole, half, quarter, and eighth-unit snapping
+* **Edge-midpoint snapping** with visible construction markers
+* **Angle bisectors**: choose the vertex and two arms to construct the internal
+  half-angle crease out to the paper boundary
 * **Cleanup** to remove extra degree-0 or -2 vertices
 * **Undo/redo**
 * **Save/export** to .fold/.svg, including cutting (unwelding) of slits
@@ -26,6 +30,22 @@ Currently it works well for crease patterns that fit on an integer grid.
   * Escape key cancels current operation
   * `z` for undo, `Z` or `y` for redo
   * Modes and line types list their key shortcut
+
+## Construction tools
+
+Choose a fractional **Grid step** when a model needs half- or quarter-unit
+reference points. With **Snap to edge midpoints** enabled, every existing edge
+offers its midpoint as a snap target; drawing to one automatically subdivides
+that edge and creates a real FOLD vertex.
+
+To halve an angle, choose **Bisect Angle** (or press `i`), then select:
+
+1. The angle vertex
+2. A point on the first arm
+3. A point on the second arm
+
+The editor previews and creates the internal angle bisector, clipped to the
+paper boundary, using the currently selected crease assignment and fold angle.
 
 ## Installation
 * Type `npm install` to do the necessary preparation

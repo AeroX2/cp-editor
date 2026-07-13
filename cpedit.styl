@@ -1,19 +1,29 @@
 // Side-by-side layout of menu and GUI
+graphite = #171a1f
+panel = #232830
+paper = #fbfaf6
+amber = #f2b84b
+
 body
   display: flex
   margin: 0px
   height: 100vh
+  background: paper
+  color: graphite
+  font-family: Bahnschrift, 'Arial Narrow', sans-serif
 
 #menu
-  max-width: 50%
+  width: 18rem
+  max-width: 42vw
   flex: 0
   display: flex
   flex-direction: column
   min-width: min-content
   overflow-x: hidden
   overflow-y: auto
-  background: black
+  background: graphite
   color: white
+  border-right: 1px solid #343b45
   a:link
     color: white
   a:hover
@@ -21,14 +31,45 @@ body
 
   hr
     width: 100%
+    border: 0
+    border-top: 1px solid #3a414c
+    margin: 0.35rem 0
 
 #interface
   flex: 1
+  position: relative
+  min-width: 0
+  background: paper
+
+#toolHint
+  position: absolute
+  z-index: 2
+  left: 50%
+  bottom: 1rem
+  transform: translateX(-50%)
+  padding: 0.5rem 0.75rem
+  border: 1px solid rgba(23, 26, 31, 0.18)
+  border-radius: 999px
+  background: rgba(251, 250, 246, 0.92)
+  color: graphite
+  box-shadow: 0 0.25rem 1rem rgba(23, 26, 31, 0.12)
+  font-size: 0.82rem
+  letter-spacing: 0.02em
+  pointer-events: none
+  white-space: nowrap
+
+.sectionLabel
+  padding: 0.45rem 0.5rem 0.2rem
+  color: amber
+  font-size: 0.72rem
+  font-weight: 700
+  letter-spacing: 0.12em
+  text-transform: uppercase
 
 .input, .multinput
-  font-size: large
+  font-size: 1rem
   input
-    font-size: large
+    font-size: 1rem
   white-space: nowrap
   padding: 5px 10px 5px 5px
   .input
@@ -38,8 +79,8 @@ body
     flex: 0
 
   &:hover
-    color: yellow
-    background: gray
+    color: white
+    background: panel
 
   label, span
     display: block
@@ -50,6 +91,17 @@ body
   input[type='text']
     width: 5em
     flex: 1
+
+  select, input[type='text'], button, input[type='button']
+    border: 1px solid #4b5563
+    border-radius: 0.2rem
+    background: panel
+    color: white
+    font: inherit
+
+  select:focus-visible, input:focus-visible, button:focus-visible
+    outline: 2px solid amber
+    outline-offset: 2px
 
 table
   color: inherit
@@ -77,8 +129,12 @@ line
   stroke-linecap: round
 
 .grid line
-  stroke: #dddddd
-  stroke-width: 0.05
+  stroke: #e2dfd7
+  stroke-width: 0.025
+
+  &.major
+    stroke: #c9c5bb
+    stroke-width: 0.045
 
 .crease line, .drag line
   stroke-width: 0.1
@@ -99,9 +155,35 @@ line
     stroke-width: 0.25
 
 .drag circle
-  fill: purple
+  fill: amber
+
+.midpoint circle
+  fill: amber
+  stroke: paper
+  stroke-width: 0.035
+  pointer-events: none
+
+.drag line.guide
+  stroke: amber
+  stroke-width: 0.06
+  stroke-dasharray: 0.16 0.12
+
+.drag line.bisector
+  stroke-width: 0.14
 
 .vertex circle.drag
-  fill: purple
-  stroke: purple
+  fill: amber
+  stroke: amber
   stroke-width: 0.1
+
+@media (max-width: 700px)
+  body
+    flex-direction: column
+  #menu
+    width: 100%
+    max-width: none
+    max-height: 42vh
+    border-right: 0
+    border-bottom: 1px solid #343b45
+  #interface
+    min-height: 58vh

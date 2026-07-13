@@ -6,7 +6,8 @@
   "scripts": {
     "prepare": "gulp",
     "watch": "gulp watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp",
+    "test": "gulp && node test/geometry.test.js"
   },
   "author": "Erik Demaine",
   "license": "MIT",

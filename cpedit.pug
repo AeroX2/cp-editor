@@ -56,9 +56,25 @@ html
       .input.clickable
         input#redo(type='button', value='Redo', title='Shortcut: y or shift-z or ctrl-y or ctrl-shift-z')
       hr
+      .sectionLabel Construction aids
+      .input
+        label(for='gridDivisions') Grid step
+        select#gridDivisions(title='Choose whole, half, quarter, or eighth-unit grid snapping')
+          option(value='1') 1
+          option(value='2') 1/2
+          option(value='4') 1/4
+          option(value='8') 1/8
+      .input.clickable
+        input#snapMidpoints(type='checkbox', checked)
+        label(for='snapMidpoints') Snap to edge midpoints
+      hr
+      .sectionLabel Tools
       .input.clickable
         input#drawLine(type='radio', name='mode', checked)
         label(for='drawLine') Draw Crease (<code>d</code>)
+      .input.clickable
+        input#angleBisector(type='radio', name='mode')
+        label(for='angleBisector') Bisect Angle (<code>i</code>)
       .input.clickable
         input#assignLine(type='radio', name='mode')
         label(for='assignLine') Assign Crease (<code>a</code>)
@@ -99,3 +115,4 @@ html
       .input
         a(href="https://github.com/edemaine/cp-editor/") Source code on GitHub
     div#interface
+      #toolHint(aria-live='polite') Draw crease · choose the first point
